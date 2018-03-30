@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup_window"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+
+
+    <TableLayout
+        android:id="@+id/tabla_cuerpo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:id="@+id/tableRow0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/textView0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_header"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:text="Salary Details"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorWhite" />
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow111"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Wage"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/Hour_Wage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow112"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView112"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Overtime Wage"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/Overtime_Wage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow113"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView113"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="State Holiday Wage"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/State_Wage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow114"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView114"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="E/S Wage"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/ES_Wage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Vacation Pay"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/Vacation_Pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+
+        </TableRow>
+
+
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Gross Income"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/Gross_Income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="CPP (Pension Plan)"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/CPP_Plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Employment Insurance"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/EI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Federal Tax"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/Federal_Tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Provisional Tax"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/Provisional_Tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:text="Total Deduction"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/Total_Deduction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Net Amount"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/Net_Amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_header"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:textSize="25sp"
+                android:text="Work Details"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorWhite" />
+
+
+        </TableRow>
+
+
+
+        <TableRow
+            android:id="@+id/tableRow15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="Regular Hours"
+            android:textColor="@color/colorBlack"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/Hour1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow19"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Rate"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/Rate1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow21"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Overtime Hours"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/OverTime1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="State Hours"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/StateHour1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textColor="@color/colorBlack"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </TableRow>
+
+
+    <TableRow
+        android:id="@+id/tableRow24"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="E/S Hours"
+            android:textColor="@color/colorBlack"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/ESHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </TableRow>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:background="@color/colorTextHint"
+                android:textColor="@color/colorWhite"
+                android:text=" Recalculate " />
+
+
+
+            <Button
+                android:id="@+id/export_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorTextHint"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="7dp"
+                android:text="Export" />
+
+
+            <Button
+                android:id="@+id/share_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorTextHint"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="7dp"
+                android:text="Share File" />
+
+
+            <Button
+                android:id="@+id/report_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorTextHint"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="7dp"
+                android:text="Report Bug" />
+
+
+
+        </LinearLayout>
+
+</TableLayout>
+
+
+
+
+</LinearLayout>
+</ScrollView>

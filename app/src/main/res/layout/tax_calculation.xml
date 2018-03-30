@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_window"
     android:layout_width="match_parent"
-    android:background="#444444"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -212,7 +212,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_marginTop="20dp"
-        android:text="Cancel" />
+        android:text="Recalculate" />
 
 
 </LinearLayout>

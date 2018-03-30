@@ -10,4 +10,37 @@
     <string name="check_if_you_want_to_enter_overtime">Check if you want to enter Overtime</string>
     <string name="enter_overtime_hours">Enter Overtime Hours</string>
     <string name="calculate">Calculate</string>
+    <string name="title_activity_tax_answer">Salary</string>
+
+    <string-array name="province_array">
+        <item value="Ontario">Ontario</item>
+        <item value="MB">Manitoba</item>
+        <item value="BC">British Columbia</item>
+        <item value="QC">Quebec</item>
+        <item>Alberta</item>
+        <item>Nova Scotia</item>
+        <item>Saskatchewan</item>
+        <item>NewFoundland and Labrador</item>
+        <item>NewFoundland and Labrador</item>
+        <item>New Brunswick</item>
+        <item>Prince Edward Island</item>
+
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tax_tabs">TaxTabs</string>
+
+
+    <string name="error_name">Enter Full Name</string>
+    <string name="error_message_email">Enter Email Address</string>
+    <string name="error_message_password">Enter Password</string>\
+    <string name="error_password_match">Password Does Not Match</string>
+    <string name="error_email">Invalid Email</string>
+    <string name="error_password">Invalid Password</string>
+    <string name="error_valid_email_password">Invalid Email or Password</string>
+    <string name="success_message">Registration Successful</string>
+    <string name="error_email_exits">Email Already Exits</string>
+    <string name="not_member">Not a Member? Sign Up Here.</string>
+
 </resources>

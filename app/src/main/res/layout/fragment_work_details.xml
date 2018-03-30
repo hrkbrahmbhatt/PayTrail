@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup_window"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="my.webs2canada.paytrail.fragment.WorkDetails">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        android:orientation="vertical">
+
+
+        <TableLayout
+            android:id="@+id/tabla_cuerpo"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work's Details"
+        android:textColor="@color/colorWhite"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"/>
+
+
+    <TableRow
+        android:id="@+id/tableRow15"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="Regular Hours"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/Hour1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow19"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="Rate"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/Rate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </TableRow>
+
+
+    <TableRow
+        android:id="@+id/tableRow21"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="Overtime Hours"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/OverTime1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow23"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="State Hours"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/StateHour1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </TableRow>
+
+
+    <TableRow
+        android:id="@+id/tableRow24"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:padding="5dp"
+            android:text="E/S Hours"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/ESHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    </TableRow>
+
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:text="Recalculate" />
+
+
+
+        <Button
+            android:id="@+id/import_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:text="Import" />
+
+
+        <Button
+            android:id="@+id/share_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:text="Share File" />
+
+
+        <Button
+            android:id="@+id/report_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:text="Report" />
+
+
+
+    </LinearLayout>
+
+</TableLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
+
+</ScrollView>

@@ -1,13 +1,13 @@
 package my.webs2canada.paytrail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,85 +18,80 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import my.webs2canada.ctc.R;
+import my.webs2canada.paytrail.fragment.SalaryDetails;
 import my.webs2canada.paytrail.model.CalcPresenterImpl;
 import my.webs2canada.paytrail.presenter.CalcPresenter;
 import my.webs2canada.paytrail.view.CalcView;
+import my.webs2canada.paytrail.webs2canada.utils.validation.Validation;
+
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    //CalcPresenter mcalcPresenter;
 
+    //private CalcPresenter calcPresenter;
     private PopupWindow pw;
 
-    EditText Hour;
-    EditText Rate;
-    EditText OverTime;
-    EditText StateHoliday;
+    private EditText Hour;
+    private EditText Rate;
+    private EditText OverTime;
+    private EditText StateHoliday;
+    private EditText EShour;
 
-    //Show View
-    TextView Gross;
-    TextView CPP;
-    TextView VacationPay;
-    TextView EI;
-    TextView FederalTax;
-    TextView ProvisionalTax;
-    TextView TotalDeduction;
-    TextView NetAmount;
+    private TextView logout;
+    private TextView welcomeName;
 
+    private Button calculate_number;
+    private Button reset;
 
-//    Double hour = 0.0;
-//    Double rate = 0.0;
-//    Double overtime = 0.0;
-//    Double sholiday = 0.0;
-//    Double weekinyear = 52.0;
-//    Double surtax;
-//    Double ptax;
-//    Double net;
+    Double hour;
+    Double rate;
+    Double overtime;
+    Double sholiday;
+    Double eshour;
+    Boolean test = true;
+    Boolean test2 = true;
+    Boolean test3 = true;
+    Boolean test4 = true;
 
 
-//    //Answer
-//    Double hourwage = 0.0;
-//    Double overTimewage = 0.0;
-//    Double wageR = 0.0;
-//    Double vacation = 0.0;
-//    Double gross = 0.0;
-//    Double yincome;
-//    Double cpp;
-//    Double ei;
-//    Double tax;
-//    Double ftax;
+    Double weekinyear;
 
-    //steps
+    String province;
 
-//    Double step1;
-//    Double step7;
-//    Double step101 = 11809.00;
-//    Double step102;
-//    Double step103;
-//    Double step10;
-//    Double step11;
-//    Double step13;
-//    Double step14;
-//    Double step17;
-//    Double step18;
-//    Double step20;
+    private CheckBox OverTimeCheck;
+    private CheckBox StateCheck;
+    private CheckBox EsCheck;
 
-    Button calculate_number;
 
-    private CalcBrain calcBrain;
+    private Spinner spinner;
 
+    private RadioGroup radioCalcGroup;
+    private RadioButton radioButton;
+    private RadioButton radioButton2;
+
+    Validation validation;
+
+    private boolean doubleBackToExitPressedOnce;
+    private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +100,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        calcBrain = new CalcBrain();
-       // mcalcPresenter = new CalcPresenterImpl(MainActivity.this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -123,42 +116,149 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        validation = new Validation();
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        OverTime = (EditText) findViewById(R.id.Overtime_Box);
-        Rate = (EditText) findViewById(R.id.Rate_Box);
-        Hour = (EditText) findViewById(R.id.Hour_Box);
-        StateHoliday = (EditText) findViewById(R.id.state_holiday);
-        calculate_number = (Button) findViewById(R.id.Calc);
+
+        spinner = (Spinner) findViewById(R.id.province_spinner);
+
+
+        //CheckBoxes
+        OverTimeCheck = findViewById(R.id.OvertimeCheck);
+        StateCheck = findViewById(R.id.StateholidayCheck);
+        EsCheck = findViewById(R.id.ESCheck);
+
+
+        //EditText
+        OverTime = findViewById(R.id.Overtime);
+        Rate = findViewById(R.id.Rate);
+        Hour = findViewById(R.id.Hour);
+        StateHoliday = findViewById(R.id.StateHoliday);
+        EShour = findViewById(R.id.ESHour);
+
+        //Button
+        calculate_number = findViewById(R.id.Calc);
+        reset = findViewById(R.id.Reset);
+
+        //Radio Button
+        radioCalcGroup = findViewById(R.id.radioGroup);
+        radioButton = findViewById(R.id.weekly);
+        radioButton2 = findViewById(R.id.biweekly);
+
+        //welcome & logout
+//        welcomeName = findViewById(R.id.loginName);
+//        logout = findViewById(R.id.logOut);
+
+        //EditText Visibility
+        OverTime.setVisibility(View.GONE);
+        StateHoliday.setVisibility(View.GONE);
+        EShour.setVisibility(View.GONE);
+
         OverTime.setEnabled(false);
         OverTime.setFocusableInTouchMode(false);
         OverTime.clearFocus();
 
-        // DecimalFormat percentageFormat = new DecimalFormat("00.00");
-        final DecimalFormat df = new DecimalFormat("####0.00");
-        //final String finalPercentage = percentageFormat.format(gross);
+        StateHoliday.setEnabled(false);
+        StateHoliday.setFocusableInTouchMode(false);
+        StateHoliday.clearFocus();
+
+        EShour.setEnabled(false);
+        EShour.setFocusableInTouchMode(false);
+        EShour.clearFocus();
 
 
-        final CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox);
-        checkBox1.setOnClickListener(new View.OnClickListener() {
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.province_array, R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+
+//        String nameFromIntent = getIntent().getStringExtra("email");
+//
+//         welcomeName.setText("Hello " + nameFromIntent);
+//
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                switch (v.getId()) {
+//                    case R.id.logOut:
+//                        // SharedPreferences preferences = getSharedPreferences("Reg", Context.MODE_PRIVATE);
+//                        // SharedPreferences.Editor editor = preferences.edit();
+//                        //  editor.commit();
+//                        finish();
+//                        // session.isUserLoggedIn()== false;
+//                        Intent in = new Intent(getApplicationContext(), LoginActivity.class);
+//                        startActivity(in);
+//
+//                }
+//            }
+//        });
+
+        OverTimeCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 if (((CheckBox) v).isChecked()) {
 
-                    OverTime.setEnabled(true);
-                    OverTime.setFocusableInTouchMode(true);
-                    OverTime.requestFocus();
+                    validation.showEditTextBox(OverTime);
 
                 } else {
 
-                    OverTime.setEnabled(false);
-                    OverTime.setFocusableInTouchMode(false);
-                    OverTime.clearFocus();
+                    validation.hideEditTextBox(OverTime);
 
 
                 }
+            }
+        });
+
+
+        StateCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (((CheckBox) v).isChecked()) {
+
+                    validation.showEditTextBox(StateHoliday);
+                } else {
+
+                    validation.hideEditTextBox(StateHoliday);
+
+
+                }
+            }
+        });
+
+        EsCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (((CheckBox) v).isChecked()) {
+
+                    validation.showEditTextBox(EShour);
+                } else {
+
+                    validation.hideEditTextBox(EShour);
+
+
+                }
+            }
+        });
+
+
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Hour.setText("");
+                Rate.setText("");
+                OverTime.setText("");
+                StateHoliday.setText("");
+                EShour.setText("");
             }
         });
 
@@ -166,276 +266,139 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                if (Hour.getText().toString().length() == 0.0 && Hour.getText().toString().equals("")) {
 
-                    Hour.setError("Hour is Required");
-
-                } else {
-                   calcBrain.gross = Double.parseDouble(Hour.getText().toString());
+                if (radioButton.isChecked()) {
+                    weekinyear = 52.0;
                 }
-                if (checkBox1.isChecked()) {
-                    if (OverTime.getText().toString().length() == 0.0 && OverTime.getText().toString().equals("")) {
-                        OverTime.setError("OverTime is Required");
-                    } else {
-                        calcBrain.overtime = Double.parseDouble(OverTime.getText().toString());
-
-                    }
-                } else {
-                    calcBrain.overtime = 0.0;
-                    OverTime.setError(null);
+                if (radioButton2.isChecked()) {
+                    weekinyear = 26.0;
                 }
 
-                if (Rate.getText().toString().length() == 0.0 && Rate.getText().toString().equals("")) {
-                    Rate.setError("Rate is Required");
+                test = validation.setMessage(Hour, "Hour");
 
-                } else {
-                    calcBrain.rate = Double.parseDouble(Rate.getText().toString());
+                test2 = validation.setMessage(Rate, "Rate");
 
+//                test = setMessage(Hour);
+                //              test = setMessage(Rate);
+//
+
+                if (OverTimeCheck.isChecked()) {
+                    test3 = validation.setMessage(OverTime, "OverTime");
+                    //test = setMessage(OverTime);
+                }
+                if (StateCheck.isChecked()) {
+                    test4 = validation.setMessage(StateHoliday, "State Holiday");
+                    //test = setMessage(StateHoliday);
                 }
 
-                if (StateHoliday.getText().length() == 0.0 && StateHoliday.getText().toString().equals("")) {
+                if (EsCheck.isChecked()) {
+                    test4 = validation.setMessage(EShour, "E/S Hour");
+                    //test = setMessage(StateHoliday);
+                }
 
-                    StateHoliday.setError("State Holiday is Required");
-
-                } else {
-                    calcBrain.sholiday = Double.parseDouble(StateHoliday.getText().toString());
-
+                if (test && test2 && test3 && test4) {
+                    openSecondActivity();
                 }
 
 
-//                // get a reference to the already created main layout
-                //LinearLayout mainLayout = (LinearLayout)
-                //      findViewById(R.id.main_layout);
-
-//                //hour wage
-//                hourwage = hour * rate;
-//
-//                //overtime
-//                if (overtime != 0.0) {
-//                    overTimewage = overtime * rate * 1.5;
-//                } else {
-//                    overtime = 0.0;
-//                }
-//                wageR = hourwage + overTimewage;
-//
-//                //state Holiday
-//                if (sholiday != 0.0) {
-//
-//                    sholiday = sholiday * rate;
-//                }
-//
-//                //vacation pay
-//
-//                vacation = (wageR + sholiday) * 0.04;
-//
-//                //gross pay
-//
-//                gross = wageR + vacation + sholiday;
-//
-//                //yearly income
-//                yincome = gross * weekinyear;
-//
-//                //cpp
-//                cpp = (0.0495 * (yincome - 3500)) / weekinyear;
-//
-//                if (cpp < 0.0) {
-//
-//                    cpp = 0.0;
-//                }
-//
-//                //ei
-//
-//                if (rate >= 1000.00) {
-//
-//                    ei = 0.0;
-//                } else {
-//                    ei = (0.0166 * yincome) / weekinyear;
-//                }
-//
-//                //tax
-//
-//                if (rate >= 1000.00) {
-//                    tax = 170.05;
-//
-//                } else {
-//                    step1 = gross;
-//                }
-//
-//                if (yincome <= 46605.00) {
-//
-//                    step7 = yincome * 0.15;
-//
-//                } else if (yincome > 93208.00) {
-//
-//                    step7 = yincome * 0.26;
-//                    step7 = step7 - 7690.00;
-//
-//                } else {
-//                    step7 = yincome * 0.205;
-//                    step7 = step7 - 2563;
-//
-//                }
-//                step102 = cpp * weekinyear;
-//                step103 = ei * weekinyear;
-//
-//                step10 = step101 + step102 + step103 + 1195.00;
-//
-//                step11 = step10 * 0.15;
-//                step13 = step7 - step11;
-//
-//
-//                //federal tax
-//                ftax = step13 / weekinyear;
-//
-//                //provisional tax
-//
-//                if (yincome <= 42960.00) {
-//
-//                    step14 = yincome * 0.0505;
-//
-//                } else if (yincome > 85923.00) {
-//                    step14 = yincome * 0.1116;
-//                    step14 = step14 - 3488.00;
-//                } else {
-//                    step14 = yincome * 0.0915;
-//                    step14 = step14 - 1761.00;
-//                }
-//
-//                step17 = 10354.00 + step102 + step103;
-//
-//                step18 = step17 * 0.0505;
-//                step20 = step14 - step18;
-//
-//
-//           /* Provincial surtax */
-//
-//                if (step20 > 5936.00) {
-//                    surtax = step20 - 5936.00;
-//                    surtax = surtax * 0.36;
-//                    surtax = surtax + (4638.00 * 0.2);
-//                    step20 = step20 + surtax;
-//                } else if (step20 > 4638.00) {
-//                    surtax = step20 * 0.2;
-//                    step20 = step20 + surtax;
-//                }
-//
-//                ptax = step20 / weekinyear;
-//
-//                tax = (ftax + ptax + cpp + ei);
-//
-//                if (tax < 0.0) {
-//                    tax = 0.0;
-//                }
-//
-//                //net
-//                net = (gross - tax);
-                calcBrain.performCalc();
-//
-
-                if (Hour.getText().toString().length() != 0.0 && OverTime.getText().toString().length() != 0.0 && Rate.getText().toString().length() != 0.0 && StateHoliday.getText().toString().length() != 0.0) {
-                    try {
-
-                        //We need to get the instance of the LayoutInflater, use the context of this activity
-                        LayoutInflater inflater = (LayoutInflater) MainActivity.this
-                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        //Inflate the view from a predefined XML layout
-                        final View layout = inflater.inflate(R.layout.tax_calculation,
-                                (ViewGroup) findViewById(R.id.popup_window));
-
-                        pw = new PopupWindow(MainActivity.this);
-                        pw.setContentView(layout);
-
-                        pw.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
-                        pw.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
-                        pw.isFocusable();
-                        //pw = new PopupWindow(layout, 1000, 1000, true);
-                        // display the popup in the center
-                        pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
-
-                        //Gross Income
-                        Gross = (TextView) layout.findViewById(R.id.Gross_Income);
-                        Double grossTemp = Double.valueOf(df.format(calcBrain.gross));
-                        Gross.setText(Double.toString(grossTemp));
-
-                        //CPP
-                        CPP = (TextView) layout.findViewById(R.id.CPP_Plan);
-                        //double cppTemp = Math.round(cpp);
-                        Double cppTemp = Double.valueOf(df.format(calcBrain.cpp));
-                        CPP.setText(Double.toString(cppTemp));
-
-                        //Vacation Pay
-                        VacationPay = (TextView) layout.findViewById(R.id.Vacation_Pay);
-                        //double vacationpayTemp = Math.round(vacation);
-                        Double vacationpayTemp = Double.valueOf(df.format(calcBrain.vacation));
-                        VacationPay.setText(Double.toString(vacationpayTemp));
-
-                        //EI
-                        EI = (TextView) layout.findViewById(R.id.EI);
-                        //double eiTemp = Math.round(ei);
-                        Double eiTemp = Double.valueOf(df.format(calcBrain.ei));
-                        EI.setText(Double.toString(eiTemp));
-
-                        //Federal Tax
-                        FederalTax = (TextView) layout.findViewById(R.id.Federal_Tax);
-                        //double ftaxTemp = Math.round(ftax);
-                        Double ftaxTemp = Double.valueOf(df.format(calcBrain.ftax));
-                        FederalTax.setText(Double.toString(ftaxTemp));
-
-                        //Provisional Tax
-                        ProvisionalTax = (TextView) layout.findViewById(R.id.Provisional_Tax);
-                        //double ptaxTemp = Math.round(ptax);
-                        Double ptaxTemp = Double.valueOf(df.format(calcBrain.ptax));
-                        ProvisionalTax.setText(Double.toString(ptaxTemp));
-
-                        //Total Deduction
-                        TotalDeduction = (TextView) layout.findViewById(R.id.Total_Deduction);
-                        //double taxdeductTemp = Math.round(tax);
-                        Double taxdeductTemp = Double.valueOf(df.format(calcBrain.tax));
-                        TotalDeduction.setText(Double.toString(taxdeductTemp));
-
-                        //Net
-                        NetAmount = (TextView) layout.findViewById(R.id.Net_Amount);
-                        // double netTemp = Math.round(net);
-                        Double netTemp = Double.valueOf(df.format(calcBrain.net));
-                        NetAmount.setText(Double.toString(netTemp));
-
-
-                        Button cancelButton = (Button) layout.findViewById(R.id.cancel_button);
-                        cancelButton.setOnClickListener(cancel_button);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-
-                    }
-                }
             }
-
-            private View.OnClickListener cancel_button = new View.OnClickListener() {
-                @Override
-                public void onClick(View layout) {
-                    pw.dismiss();
-                }
-            };
-
-
         });
-
 
     }
 
 
+    private final Runnable mRunnable = new Runnable() {
         @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (pw != null) {
-            pw.dismiss();
+        public void run() {
+            doubleBackToExitPressedOnce = false;
         }
+    };
+
+    @Override
+    protected void onDestroy() {
+
+        if (mHandler != null) {
+            mHandler.removeCallbacks(mRunnable);
+        }
+        super.onDestroy();
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        // DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
 
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        mHandler.postDelayed(mRunnable, 2000);
+       // finish();
+
     }
+
+
+
+    public void openSecondActivity(){
+
+        hour = Double.valueOf(Hour.getText().toString());
+        rate = Double.valueOf(Rate.getText().toString());
+
+        province = spinner.getSelectedItem().toString();
+
+        if(OverTimeCheck.isChecked()) {
+            overtime = Double.valueOf(OverTime.getText().toString());
+        }else {
+            overtime = 0.0;
+        }
+
+        if(StateCheck.isChecked()){
+            sholiday = Double.valueOf(StateHoliday.getText().toString());
+        }else {
+            sholiday =0.0;
+        }
+        if(EsCheck.isChecked()){
+            eshour = Double.valueOf(EShour.getText().toString());
+        }else {
+            eshour =0.0;
+        }
+
+
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putDouble("hour",hour);
+//        bundle.putDouble("overtime",overtime);
+//        bundle.putDouble("rate",rate);
+//        bundle.putDouble("sholiday",sholiday);
+//        bundle.putDouble("weekinyear",weekinyear);
+//        bundle.putString("prov",province);
+//        SalaryDetails salaryDetails = new SalaryDetails();
+//        salaryDetails.setArguments(bundle);
+
+        Intent intent = new Intent(MainActivity.this, TaxAnswer.class);
+        intent.putExtra("hour",hour );
+        intent.putExtra("overtime", overtime);
+        intent.putExtra("rate", rate);
+        intent.putExtra("sholiday", sholiday);
+        intent.putExtra("weekinyear", weekinyear);
+        intent.putExtra("eshour", eshour);
+        intent.putExtra("prov", province);
+        startActivity(intent);
+
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -479,4 +442,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

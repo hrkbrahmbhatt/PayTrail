@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1003172447217",
+    "firebase_url": "https://paytrail-5eebd.firebaseio.com",
+    "project_id": "paytrail-5eebd",
+    "storage_bucket": "paytrail-5eebd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003172447217:android:be09a16634f16767",
+        "android_client_info": {
+          "package_name": "my.webs2canada.ctc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003172447217-aun1kjvk2jemfm2agua929j74pbect51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP7eGU-KFklf3eo2VRgUJV0iY2nGhXEu4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

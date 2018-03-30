@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="my.webs2canada.ctc">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,15 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="my.webs2canada.paytrail.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name="my.webs2canada.paytrail.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="my.webs2canada.paytrail.TaxAnswer"
+            android:label="@string/title_activity_tax_answer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="my.webs2canada.paytrail.TaxTabs"
+            android:label="@string/title_activity_tax_tabs"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name="my.webs2canada.paytrail.RegisterActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="my.webs2canada.paytrail.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
