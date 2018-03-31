@@ -14,7 +14,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import my.webs2canada.ctc.R;
 import my.webs2canada.paytrail.fragment.SalaryDetails;
 import my.webs2canada.paytrail.fragment.WorkDetails;

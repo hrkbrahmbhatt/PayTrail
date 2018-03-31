@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-
 import my.webs2canada.ctc.R;
 import my.webs2canada.paytrail.TaxBrain;
 
